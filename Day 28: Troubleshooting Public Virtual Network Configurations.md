@@ -8,7 +8,29 @@ As a DevOps team member, complete the following tasks:
 - **Attach Public IP**: A public IP named `xfusion-pip` already exists. Attach this public IP to the VM `xfusion-vm` to make it accessible from the internet.
 - **Ensure Accessibility**: Confirm the VM `xfusion-vm` is accessible on port `80`.
 
-## Task 1: Ensuring `xfusion-vnet` allows internet access.
+## Task 1: Change route table for public internet.
+
+1. Go to virtual network dashboard and select `Route table` from navigation pane.
+
+   <img width="233" height="394" alt="image" src="https://github.com/user-attachments/assets/e913ef14-bec5-4de0-8327-b705ecfb4f12" />
+
+2. Select the available route table `xfusion-rtb`
+
+   <img width="1125" height="219" alt="image" src="https://github.com/user-attachments/assets/a35a96cb-ee43-4337-be28-7e518230cfd7" />
+
+3. From it's navigation pane, select `Settings > Routes`.
+
+   <img width="237" height="344" alt="image" src="https://github.com/user-attachments/assets/dfa590f8-7e9a-4a1c-854d-f85a0e80d562" />
+
+4. Click on `+ Add` and add a new route to internet as following and click `Save`.
+
+   <img width="1357" height="351" alt="image" src="https://github.com/user-attachments/assets/9be50b77-80e4-4106-aa76-6825a962bedf" />
+
+5. The new route for internet should appear in the dashboard now.
+
+   <img width="584" height="127" alt="image" src="https://github.com/user-attachments/assets/fbe9f385-9635-4dd9-98ca-47be43b6affc" />
+
+## Task 2: Ensuring `xfusion-vnet` allows internet access.
 
 1. Go to virtual network dashboard and select `xfusion-vnet`.
 
@@ -22,7 +44,7 @@ As a DevOps team member, complete the following tasks:
 
    <img width="508" height="572" alt="image" src="https://github.com/user-attachments/assets/bc0e7509-eb70-455c-a501-fa668003d301" />
 
-## Task 2: Attach public IP to the VM
+## Task 3: Attach public IP to the VM
 
 2. From the virtual network navigation pane, select `Public IP Addresses`
 
@@ -39,3 +61,24 @@ As a DevOps team member, complete the following tasks:
 5. Verify uour `xfusion-vm` now has the public ip `xfusion-pip`.
 
    <img width="1115" height="210" alt="image" src="https://github.com/user-attachments/assets/a2a13447-9e22-4d3f-89c9-2f841183144f" />
+
+## Task 4: Install and enable Nginx on the `xfusion-vm`
+
+1. SSH into the VM using public ip.
+1. Install Nginx on the VM.
+
+   ```sh
+   sudo apt install nginx -y
+   ```
+   
+3. Enable Nginx on the VM.
+
+   ```sh
+   sudo systemctl enable nginx
+   ```
+5. Verify HTTP access from internet using curl.
+
+   ```sh
+   curl <xfusion-vm-public-ip>
+   ```
+   
